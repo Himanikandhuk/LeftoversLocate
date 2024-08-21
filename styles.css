@@ -1,0 +1,176 @@
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(109, 109, 106, 0.35);
+    background-image: url('download.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+header {
+    background-repeat: no-repeat;
+    background-position: center;
+    color: rgb(2, 4, 2);
+    padding: 90px 30px;
+    text-align: center;
+    font-size: 30px;
+    text-shadow: 1px 1px 0 rgb(145, 148, 138),
+                 -1px -1px 0 rgb(145, 148, 138),
+                 1px -1px 0 rgb(145, 148, 138),
+                 -1px 1px 0 rgb(145, 148, 138);
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 5px 0;
+    font-size: 22px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+section {
+    margin: 20px;
+    padding: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: rgba(109, 109, 106, 0.35);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+pre {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+section h2 {
+    margin-top: 0;
+}
+
+form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+form input {
+    display: block;
+    width: 98%;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+input {
+    background-color: rgba(145, 148, 138, 0.7);
+}
+
+input:hover {
+    background-color: rgb(145, 148, 138);
+}
+
+button {
+    width: 30px;
+    height: 30px;
+}
+
+form button {
+    background-color: #978153;
+    color: rgb(2, 3, 2);
+    border: none;
+    cursor: pointer;
+    display: block;
+    font-weight: bold;
+    font-size: 16px;
+    width: 35%;
+    align-items: center;
+    height: 40px;
+    margin: 15px auto 5px auto;
+}
+
+form button:hover {
+    background-color: #5f4f23;
+}
+
+#listings-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.listing {
+    background-color: rgba(145, 148, 138, 0.55);
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: height 0.3s ease;
+    position: relative;
+}
+
+.listing-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.listing-description {
+    flex: 1;
+}
+
+.listing-link {
+    color: rgb(2, 4, 2);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.listing-link:hover {
+    text-decoration: underline;
+}
+
+.listing-details {
+    display: block;
+    margin-top: 10px;
+}
+
+.listing-image {
+    width: 25%; 
+    height: 25%; 
+    object-fit: contain; 
+    margin-top: 10px;
+    border-radius: 5px; 
+}
+
+.book-btn {
+    background-color: #978153;
+    color: rgb(3, 0, 0);
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    width: 100px;
+    height: 30px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.book-btn:hover {
+    background-color: #5f4f23;
+}
+.booked-message {
+    color: red;
+    font-weight: bold;
+}

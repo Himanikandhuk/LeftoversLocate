@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Form - LeftoversLocate</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>LeftoversLocate</h1>
+    </header>
+
+    <section id="booking-details">
+        <h2>Booking Details</h2>
+        <form id="booking-form">
+            <input type="hidden" id="listing-id" name="listing_id" value="">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="contact">Contact Number:</label>
+            <input type="text" id="contact" name="contact" required>
+            <button type="submit">Book</button>
+        </form>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const listingId = new URLSearchParams(window.location.search).get('listing_id');
+            document.getElementById('listing-id').value = listingId;
+            const bookingForm = document.getElementById('booking-form');
+
+            bookingForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const formData = new FormData(bookingForm);
+                fetch('book_listing.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Listing booked successfully!');
+                        window.location.href = 'listings-user.html'; // Redirect to listings page
+                    } else {
+                        alert('Error booking listing.');
+                    }
+                })
+                .catch(error => console.error('Error booking listing:', error));
+            });
+        });
+    </script>
+</body>
+</html>

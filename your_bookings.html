@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Bookings - LeftoversLocate</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>LeftoversLocate</h1>
+        <nav>
+            <ul>
+                <li><a href="home-user.html">Home</a></li>
+                <li><a href="listings-user.html">Listings</a></li>
+                <li><a href="your_bookings.html">Your Bookings</a></li>
+                <li><a href="logout.php">Logout</a></li> <!-- Assuming logout.php handles logout -->
+            </ul>
+        </nav>
+    </header>
+
+    <section id="your-bookings">
+        <h2>Your Bookings</h2>
+
+        <div id="bookings-container"></div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('fetch-bookings.php')
+                .then(response => response.json())
+                .then(data => {
+                    const bookingsContainer = document.getElementById('bookings-container');
+
+                    if (data.length === 0) {
+                        bookingsContainer.innerHTML = '<p>No bookings found.</p>';
+                    } else {
+                        data.forEach(booking => {
+                            const bookingElement = document.createElement('div');
+                            bookingElement.classList.add('booking');
+                            bookingElement.innerHTML = `
+                                <h3>${booking.description}</h3>
+                                <p><strong>Location:</strong> ${booking.location}</p>
+                                <p><strong>Quantity:</strong> ${booking.quantity}</p>
+                                <p><strong>Expiration Date:</strong> ${booking.expiration}</p>
+                                <p><strong>Contact:</strong> ${booking.booked_by_contact}</p>
+                                <p><strong>Email:</strong> ${booking.booked_by_email}</p>
+                                ${booking.image ? `<img src="data:image/jpeg;base64,${booking.image}" alt="Food Image">` : ''}
+                                <p><small>Booked on: ${booking.booked_at}</small></p>
+                            `;
+                            bookingsContainer.appendChild(bookingElement);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching bookings:', error);
+                    const bookingsContainer = document.getElementById('bookings-container');
+                    bookingsContainer.innerHTML = '<p>Error fetching bookings. Please try again later.</p>';
+                });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Listings - LeftoversLocate</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>LeftoversLocate</h1>
+        <nav>
+            <ul>
+                <li><a href="home-client.html">Home</a></li>
+                <li><a href="postfood.html">Post-Food</a></li>
+                <li><a href="your_listings.html">Your-Listings</a></li>
+                <li><a href="index.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="your-listings">
+        <h2>Your Food Listings</h2>
+        <div id="listings-container"></div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const listingsContainer = document.getElementById('listings-container');
+
+            function fetchListings() {
+                fetch('fetch_client_listings.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        listingsContainer.innerHTML = '';
+
+                        if (data.length) {
+                            data.forEach(listing => {
+                                const listingElement = document.createElement('div');
+                                listingElement.classList.add('listing');
+                                listingElement.innerHTML = `
+                                    <h3>${listing.description}</h3>
+                                    ${listing.quantity ? `<p><strong>Quantity:</strong> ${listing.quantity}</p>` : ''}
+                                    ${listing.expiration ? `<p><strong>Expiration Date:</strong> ${listing.expiration}</p>` : ''}
+                                    ${listing.location ? `<p><strong>Location:</strong> ${listing.location}</p>` : ''}
+                                    ${listing.contact ? `<p><strong>Contact:</strong> ${listing.contact}</p>` : ''}
+                                    ${listing.email ? `<p><strong>Email:</strong> ${listing.email}</p>` : ''}
+                                    ${listing.image ? `<img src="data:image/jpeg;base64,${listing.image}" alt="Food Image" style="max-width: calc(40% - 20px); height: calc(40% - 20px);">` : ''}
+                                    ${listing.created_at ? `<p><small>Posted on: ${listing.created_at}</small></p>` : ''}
+                                    ${listing.status ? `<p><strong>Status:</strong> ${listing.status}</p>` : ''}
+                                    ${listing.booked_at ? `<p><strong>Booked At:</strong> ${listing.booked_at}</p>` : ''}
+                                    ${listing.booked_by_name ? `<p><strong>Booked By Name:</strong> ${listing.booked_by_name}</p>` : ''}
+                                    ${listing.booked_by_email ? `<p><strong>Booked By Email:</strong> ${listing.booked_by_email}</p>` : ''}
+                                    ${listing.booked_by_contact ? `<p><strong>Booked By Contact:</strong> ${listing.booked_by_contact}</p>` : ''}
+                                `;
+                                listingsContainer.appendChild(listingElement);
+                            });
+                        } else {
+                            listingsContainer.innerHTML = '<p>No listings found for this email.</p>';
+                        }
+                    })
+                    .catch(error => console.error('Error fetching listings:', error));
+            }
+
+            fetchListings();
+        });
+    </script>
+</body>
+</html>

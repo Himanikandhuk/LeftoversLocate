@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Food - LeftoversLocate</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>LeftoversLocate</h1>
+        <nav>
+            <ul>
+                <li><a href="home-client.html">Home</a></li>
+                <li><a href="postfood.html">Post-Food</a></li>
+                <li><a href="your_listings.html">Your-Listings</a></li>
+                <li><a href="index.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="post-food">
+        <h2>Post Surplus Food</h2>
+        <form id="post-food-form" action="postfood.php" method="post" enctype="multipart/form-data">
+            <label for="food-description">Description:</label>
+            <input type="text" id="food-description" name="description" required>
+            
+            <label for="food-quantity">Quantity:</label>
+            <input type="number" id="food-quantity" name="quantity" required>
+            
+            <label for="food-expiration">Expiration Date:</label>
+            <input type="date" id="food-expiration" name="expiration" required>
+            
+            <label for="food-location">Location:</label>
+            <input type="text" id="food-location" name="location" required>
+
+            <label for="food-contact">Phone Number:</label>
+            <input type="tel" placeholder="0000-000-000" id="food-contact" name="contact" pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}" required>
+
+            <label for="food-email">Email:</label>
+            <input type="email" placeholder="ex:LeftoversLocate@gmail.com" id="food-email" name="email" required>
+
+            <label for="food-image">Post an Image:</label>
+            <input type="file" id="food-image" accept="image/*" name="images">
+            
+            <button type="submit">Post Food</button>
+        </form>
+    </section>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const message = urlParams.get('message');
+        if (message) {
+            alert(message);
+        }
+    </script>
+</body>
+</html>
